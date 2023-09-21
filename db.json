@@ -1,0 +1,16 @@
+{
+  "candidate": [
+    {
+      "id": 1,
+      "first_name": "rahul",
+      "last_name": "Smith",
+      "email": "rbhadoria97@gmail.com"
+    },
+    {
+      "id": 2,
+      "first_name": "subham",
+      "last_name": "singh",
+      "email": "singh@gmail.com"
+    }
+  ]
+}
