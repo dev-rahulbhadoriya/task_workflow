@@ -11,6 +11,12 @@
       "first_name": "subham",
       "last_name": "singh",
       "email": "singh@gmail.com"
+    },
+    {
+      "id": 3,
+      "first_name": "demouser",
+      "last_name": "user",
+      "email": "demo@gmail.com"
     }
   ]
 }
