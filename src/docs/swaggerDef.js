@@ -1,11 +1,9 @@
-import { version } from '../../package.json';
-import config from '../config/config';
+import config from '../config/config.js';
 
 const swaggerDef = {
     openapi: '3.0.0',
     info: {
         title: 'task Node API documentation',
-        version,
         license: {
             name: 'MIT',
             url: '',

@@ -1,46 +1,50 @@
+// userValidation.js
+
 import Joi from 'joi';
-import { password, objectId } from './custom.validation';
+import customValidations from './custom.validation.js';
 
-export const createUser = {
-    body: Joi.object().keys({
-        email: Joi.string().required().email(),
-        password: Joi.string().required().custom(password),
-        name: Joi.string().required(),
-        role: Joi.string().required().valid('user', 'admin'),
-    }),
-};
+export const userValidation = {
+    createUser: {
+        body: Joi.object().keys({
+            email: Joi.string().required().email(),
+            password: Joi.string().required().custom(customValidations.password),
+            name: Joi.string().required(),
+            role: Joi.string().required().valid('user', 'admin'),
+        }),
+    },
 
-export const getUsers = {
-    query: Joi.object().keys({
-        name: Joi.string(),
-        role: Joi.string(),
-        sortBy: Joi.string(),
-        limit: Joi.number().integer(),
-        page: Joi.number().integer(),
-    }),
-};
-
-export const getUser = {
-    params: Joi.object().keys({
-        userId: Joi.string().custom(objectId),
-    }),
-};
-
-export const updateUser = {
-    params: Joi.object().keys({
-        userId: Joi.required().custom(objectId),
-    }),
-    body: Joi.object()
-        .keys({
-            email: Joi.string().email(),
-            password: Joi.string().custom(password),
+    getUsers: {
+        query: Joi.object().keys({
             name: Joi.string(),
-        })
-        .min(1),
-};
+            role: Joi.string(),
+            sortBy: Joi.string(),
+            limit: Joi.number().integer(),
+            page: Joi.number().integer(),
+        }),
+    },
 
-export const deleteUser = {
-    params: Joi.object().keys({
-        userId: Joi.string().custom(objectId),
-    }),
+    getUser: {
+        params: Joi.object().keys({
+            userId: Joi.string().custom(customValidations.objectId),
+        }),
+    },
+
+    updateUser: {
+        params: Joi.object().keys({
+            userId: Joi.required().custom(customValidations.objectId),
+        }),
+        body: Joi.object()
+            .keys({
+                email: Joi.string().email(),
+                password: Joi.string().custom(customValidations.password),
+                name: Joi.string(),
+            })
+            .min(1),
+    },
+
+    deleteUser: {
+        params: Joi.object().keys({
+            userId: Joi.string().custom(customValidations.objectId),
+        }),
+    },
 };

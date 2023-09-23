@@ -1,2 +1,4 @@
-export { Token } from './token.model';
-export { User } from './user.model';
+import Token from './token.model.js';
+import User from './user.model.js';
+
+export default { Token, User };

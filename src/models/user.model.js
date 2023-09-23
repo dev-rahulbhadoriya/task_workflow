@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
 import bcrypt from 'bcryptjs';
-import { toJSON, paginate } from './plugins';
-import { roles } from '../config/roles';
+import { toJSON } from './plugins/index.js';
 
 const userSchema = new mongoose.Schema(
     {
@@ -52,18 +51,8 @@ const userSchema = new mongoose.Schema(
 
 // add plugin that converts mongoose to json
 userSchema.plugin(toJSON);
-userSchema.plugin(paginate);
+// userSchema.plugin(paginate);
 
-/**
- * Check if email is taken
- * @param {string} email - The user's email
- * @param {ObjectId} [excludeUserId] - The id of the user to be excluded
- * @returns {Promise<boolean>}
- */
-userSchema.statics.isEmailTaken = async function (email, excludeUserId) {
-    const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
-    return !!user;
-};
 
 /**
  * Check if the password matches the user's password

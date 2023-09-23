@@ -1,5 +1,5 @@
 import winston, { format } from 'winston';
-import config from './config';
+import config from './config.js';
 
 const { combine, colorize, uncolorize, splat, printf } = format;
 

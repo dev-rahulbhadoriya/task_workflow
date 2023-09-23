@@ -40,5 +40,5 @@ const toJSON = (schema) => {
     });
 };
 
-export default toJSON;
+export { toJSON };
 

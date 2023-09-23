@@ -1,4 +1,5 @@
-export const authService = require('./auth.service');
-export const emailService = require('./email.service');
-export const tokenService = require('./token.service');
-export const userService = require('./user.service');
+import * as authService from './auth.service.js';
+import * as tokenService from './token.service.js';
+import * as userService from './user.service.js';
+
+export { authService, tokenService, userService };
