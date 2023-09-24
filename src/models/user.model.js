@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
 import bcrypt from 'bcryptjs';
-import toJSON from './plugins/index.js';
+import plaugins from './plugins/index.js';
 import roles from '../config/roles.js'
 
 
@@ -52,8 +52,8 @@ const userSchema = new mongoose.Schema(
 );
 
 // add plugin that converts mongoose to json
-userSchema.plugin(toJSON);
-// userSchema.plugin(paginate);
+userSchema.plugin(plaugins.toJSON);
+userSchema.plugin(plaugins.paginate);
 
 // Define a static method to check if an email is taken
 userSchema.statics.isEmailTaken = async function (email, excludeUserId) {

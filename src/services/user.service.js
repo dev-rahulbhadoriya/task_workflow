@@ -9,7 +9,7 @@ import ApiError from '../utils/ApiError.js';
  */
 
 const createUser = async (userBody) => {
-    console.log("$$$$",);
+
     if (await User.isEmailTaken(userBody.email)) {
         throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
     }
@@ -63,7 +63,7 @@ const updateUserById = async (userId, updateBody) => {
         throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
     }
     Object.assign(user, updateBody);
-    await user.save();
+    await user.updateOne();
     return user;
 };
 
@@ -77,7 +77,7 @@ const deleteUserById = async (userId) => {
     if (!user) {
         throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
     }
-    await user.remove();
+    await user.deleteOne()
     return user;
 };
 

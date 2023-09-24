@@ -1,3 +1,3 @@
 import toJSON from './toJSON.plugin.js';
-
-export default toJSON
+import paginate from './paginate.plugin.js';
+export default { toJSON, paginate }

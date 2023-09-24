@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import toJSON from './plugins/index.js';
+import plugins from './plugins/index.js';
 import tokenTypes from '../config/tokens.js';
 
 const tokenSchema = new mongoose.Schema(
@@ -33,7 +33,7 @@ const tokenSchema = new mongoose.Schema(
     }
 );
 
-tokenSchema.plugin(toJSON);
+tokenSchema.plugin(plugins.toJSON);
 
 /**
  * @typedef Token
