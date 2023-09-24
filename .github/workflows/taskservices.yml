@@ -33,18 +33,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-  deploy_to_minikube:
-    name: Deploy to Minikube
-    needs: push_to_registry
-    runs-on: ubuntu-latest
-    steps:
-      - name: Configure kubectl for local Minikube
-        run: |
-          mkdir -p $HOME/.kube
-          cp $HOME/.minikube/config $HOME/.kube/config
-
-      - name: Deploy to Minikube
-        run: |
-          # Deploy the updated build to local Minikube
-          kubectl apply -f your-deployment.yaml
