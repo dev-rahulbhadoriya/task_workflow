@@ -39,23 +39,12 @@ jobs:
     needs: push_to_registry
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Minikube
-        uses: kubeactions/setup-minikube@v1
-        with:
-          minikube-version: v1.24.0
-          k8s-version: v1.21.0
-
-      - name: Start Minikube
-        run: minikube start
-
-      - name: Configure kubectl
-        run: minikube kubectl-config view --output-name=minikube | tee $HOME/.kube/config
+      - name: Configure kubectl for local Minikube
+        run: |
+          mkdir -p $HOME/.kube
+          cp $HOME/.minikube/config $HOME/.kube/config
 
       - name: Deploy to Minikube
         run: |
-          # Deploy the updated build to Minikube
-          kubectl apply -f minikubedeployment.yaml
-
-      - name: Clean up Docker images
-        run: |
-          docker rmi rbhadoria97/tasknodeapp:main
+          # Deploy the updated build to local Minikube
+          kubectl apply -f your-deployment.yaml
