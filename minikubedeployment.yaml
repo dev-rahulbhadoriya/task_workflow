@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task-qodeleaf
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: task-qodeleaf
+  template:
+    metadata:
+      labels:
+        app: task-qodeleaf
+    spec:
+      containers:
+        - name: task-qodeleaf
+          image: rbhadoria97/nodejs-app:latest
+          ports:
+            - containerPort: 3000
