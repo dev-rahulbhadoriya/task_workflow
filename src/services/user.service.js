@@ -1,5 +1,5 @@
 import httpStatus from 'http-status';
-import User from '../models/index.js';
+import User from '../models/user.model.js';
 import ApiError from '../utils/ApiError.js';
 
 /**
@@ -7,7 +7,9 @@ import ApiError from '../utils/ApiError.js';
  * @param {Object} userBody
  * @returns {Promise<User>}
  */
+
 const createUser = async (userBody) => {
+    console.log("$$$$",);
     if (await User.isEmailTaken(userBody.email)) {
         throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
     }

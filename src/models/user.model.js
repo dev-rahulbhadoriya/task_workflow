@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
 import bcrypt from 'bcryptjs';
-import { toJSON } from './plugins/index.js';
+import toJSON from './plugins/index.js';
+import roles from '../config/roles.js'
+
 
 const userSchema = new mongoose.Schema(
     {
@@ -36,8 +38,8 @@ const userSchema = new mongoose.Schema(
         },
         role: {
             type: String,
-            enum: 'user',
-            default: 'user',
+            enum: roles.roles,
+            default: 'company',
         },
         isEmailVerified: {
             type: Boolean,
@@ -53,6 +55,11 @@ const userSchema = new mongoose.Schema(
 userSchema.plugin(toJSON);
 // userSchema.plugin(paginate);
 
+// Define a static method to check if an email is taken
+userSchema.statics.isEmailTaken = async function (email, excludeUserId) {
+    const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
+    return !!user;
+};
 
 /**
  * Check if the password matches the user's password

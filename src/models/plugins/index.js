@@ -1,1 +1,3 @@
-export { toJSON } from './toJSON.plugin.js';
+import toJSON from './toJSON.plugin.js';
+
+export default toJSON

@@ -1,5 +1,5 @@
-import * as authService from './auth.service.js';
-import * as tokenService from './token.service.js';
-import * as userService from './user.service.js';
+import authService from './auth.service.js';
+import tokenService from './token.service.js';
+import userService from './user.service.js';
 
 export { authService, tokenService, userService };
