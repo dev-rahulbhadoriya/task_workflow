@@ -7,7 +7,7 @@ let server;
 
 const startServer = async () => {
     try {
-        await mongoose.connect(config.mongoose.url, config.mongoose.options);
+        await mongoose.connect(config.mongodb.uri, config.mongodb.options);
         logger.info('Connected to MongoDB');
 
         server = app.listen(config.port, () => {

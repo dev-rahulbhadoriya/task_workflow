@@ -6,12 +6,12 @@ import Joi from 'joi';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-config({ path: join(__dirname, '../.env') });
+config({ path: join(__dirname, '../../.env') });
 const envVarsSchema = Joi.object()
     .keys({
         NODE_ENV: Joi.string().valid('production', 'development', 'test').required(),
         PORT: Joi.number().default(3000),
-        MONGODB_URL: Joi.string().required().description('MongoDB connection URI'),
+        MONGODB_URL: Joi.string().required().description('MongoDB connection URL'),
         JWT_SECRET: Joi.string().required().description('JWT secret key'),
         JWT_ACCESS_EXPIRATION_MINUTES: Joi.number().default(30).description('minutes after which access tokens expire'),
         JWT_REFRESH_EXPIRATION_DAYS: Joi.number().default(30).description('days after which refresh tokens expire'),
@@ -24,11 +24,10 @@ const envVarsSchema = Joi.object()
     })
     .unknown();
 
+console.log("@@@", process.env)
 
-console.log("&&&&&&", envVarsSchema);
 const { value: envVars, error } = envVarsSchema.prefs({ errors: { label: 'key' } }).validate(process.env);
 if (error) {
-    console.log("error in ", error);
     throw new Error(`Config validation error: ${error.message}`);
 }
 
@@ -36,7 +35,7 @@ const configExport = {
     env: envVars.NODE_ENV,
     port: envVars.PORT,
     mongodb: {
-        uri: envVars.MONGODB_URI,
+        uri: envVars.MONGODB_URL,
     },
     jwt: {
         secret: envVars.JWT_SECRET,
