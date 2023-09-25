@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: task-qodeleaf
-          image: rbhadoria97/tasknodeapp:main
+          image: rbhadoria97/tasknodeapp
           ports:
             - containerPort: 3000
           env:
