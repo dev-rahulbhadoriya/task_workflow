@@ -3,13 +3,13 @@ import catchAsync from '../utils/catchAsync.js';
 import { authService, userService, tokenService } from '../services/index.js';
 
 export const authController = {
-
+    // register 
     register: catchAsync(async (req, res) => {
         const user = await userService.createUser(req.body);
         const tokens = await tokenService.generateAuthTokens(user);
         res.status(httpStatus.CREATED).send({ user, tokens });
     }),
-
+    // login
     login: catchAsync(async (req, res) => {
         const { email, password } = req.body;
         const user = await authService.loginUserWithEmailAndPassword(email, password);
